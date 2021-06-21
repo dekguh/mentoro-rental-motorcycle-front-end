@@ -1,0 +1,72 @@
+html {
+    overflow-x: hidden;
+    font-size: 14px;
+}
+
+body {
+    font-family: $font-body;
+    line-height: 1.4;
+    color: $color-body;
+}
+
+%heading-font {
+    margin-bottom: 12px;
+    color: $color-heading;
+    font-family: $font-heading;
+    line-height: $line-height-heading;
+}
+
+h1 {
+    @extend %heading-font;
+    font-size: $size-h1;
+}
+
+h2 {
+    @extend %heading-font;
+    font-size: $size-h2;
+}
+
+h3 {
+    @extend %heading-font;
+    font-size: $size-h3;
+}
+
+h4 {
+    @extend %heading-font;
+    font-size: $size-h4;
+}
+
+h5 {
+    @extend %heading-font;
+    font-size: $size-h5;
+}
+
+h6 {
+    @extend %heading-font;
+    font-size: $size-h6;
+}
+
+p {
+    line-height: $line-height-body;
+    margin-bottom: 12px;
+}
+
+button, input {
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+}
+
+a {
+    color: $color-primary;
+    transition: .4s;
+
+    &:hover {
+        color: $color-secondary;
+    }
+
+    &:visited {
+        color: $color-primary;
+    }
+}
