@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div>
       <Label text='Name' />
-      <Input placeholder='Name' />
+      <Input type='text' placeholder='Name' />
       <Button text='button'><House /></Button>
       <Select listSelect={['dek', 'sa']} />
     </div>
