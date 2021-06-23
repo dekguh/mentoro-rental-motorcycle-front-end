@@ -4,6 +4,7 @@ import Input from '../components/atomics/form/Input';
 import Label from '../components/atomics/form/Label';
 import Button from '../components/atomics/form/Button';
 import { House } from 'react-bootstrap-icons';
+import Select from '../components/atomics/form/Select';
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <Label text='Name' />
       <Input placeholder='Name' />
       <Button text='button'><House /></Button>
+      <Select listSelect={['dek', 'sa']} />
     </div>
   )
 }
