@@ -1,0 +1,14 @@
+.form__label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.form__control {
+    padding: 12px 16px;
+    border-color: $color-gray-primary;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    color: $color-black-optional;
+    width: 100%;
+}

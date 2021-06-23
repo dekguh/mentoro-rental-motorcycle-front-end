@@ -1,0 +1,31 @@
+.btn__custom {
+    padding: 12px 20px;
+    color: #FFFFFF;
+    background-color: $color-primary;
+    border-width: 1px;
+    border-style: solid;
+    border-color: $color-primary;
+    border-radius: 4px;
+    transition: .4s;
+
+    &:hover {
+        background-color: $color-secondary;
+        border-color: $color-secondary;
+    }
+
+    .btn__custom-icon {
+        font-size: 14px;
+        margin-right: 8px;
+    }
+
+    .btn-primary-outline {
+        background-color: transparent;
+        border-color: $color-primary;
+        color: $color-primary;
+
+        &:hover {
+            border-color: $color-secondary;
+            color: $color-secondary;
+        }
+    }
+}
