@@ -60,10 +60,12 @@ button, input {
 
 a {
     color: $color-primary;
+    text-decoration: none;
     transition: .4s;
 
     &:hover {
         color: $color-secondary;
+        text-decoration: none;
     }
 
     &:visited {

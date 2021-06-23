@@ -1,5 +1,9 @@
+import NavList from '../../molecules/NavList';
+
 export default function Navigation() {
     return(
-        <div>navigation</div>
+        <div className='navigation__wrap'>
+            <NavList />
+        </div>
     )
 }
