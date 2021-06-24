@@ -1,0 +1,234 @@
+[
+    {
+        "id": 2,
+        "name": "Honda Beat 2021",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\n#### Info\n- 125cc\n- 2021\n- for 2 people",
+        "featured": null,
+        "rent_price": {
+            "id": 2,
+            "motor": null,
+            "published_at": "2021-06-24T04:57:40.768Z",
+            "created_at": "2021-06-24T04:54:24.435Z",
+            "updated_at": "2021-06-24T04:57:41.493Z",
+            "title": "price 20000/day",
+            "priceList": [
+                {
+                    "id": 2,
+                    "price": null,
+                    "totalHour": 24,
+                    "discount": 0,
+                    "pricePerHour": 833.333333333
+                }
+            ]
+        },
+        "benefit": {
+            "id": 1,
+            "published_at": "2021-06-24T04:51:25.253Z",
+            "created_at": "2021-06-24T04:35:55.563Z",
+            "updated_at": "2021-06-24T04:51:25.537Z",
+            "title": "benefit 1",
+            "benefitRent": [
+                {
+                    "id": 1,
+                    "name": "helm",
+                    "value": "yes"
+                },
+                {
+                    "id": 2,
+                    "name": "fuel",
+                    "value": "no"
+                },
+                {
+                    "id": 3,
+                    "name": "coat",
+                    "value": "yes"
+                },
+                {
+                    "id": 4,
+                    "name": "insurance",
+                    "value": "no"
+                }
+            ]
+        },
+        "published_at": "2021-06-24T04:57:54.640Z",
+        "created_at": "2021-06-24T04:56:03.754Z",
+        "updated_at": "2021-06-24T08:34:39.049Z",
+        "isDiscount": true,
+        "typeMotor": "matic",
+        "thumbnailURL": "https://hondamandala.com/wp-content/uploads/2020/05/Beat-Avatar.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Honda Vario 2021",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\n#### Info\n- 125cc\n- 2021\n- for 2 people",
+        "featured": null,
+        "rent_price": {
+            "id": 2,
+            "motor": null,
+            "published_at": "2021-06-24T04:57:40.768Z",
+            "created_at": "2021-06-24T04:54:24.435Z",
+            "updated_at": "2021-06-24T04:57:41.493Z",
+            "title": "price 20000/day",
+            "priceList": [
+                {
+                    "id": 2,
+                    "price": null,
+                    "totalHour": 24,
+                    "discount": 0,
+                    "pricePerHour": 833.333333333
+                }
+            ]
+        },
+        "benefit": {
+            "id": 1,
+            "published_at": "2021-06-24T04:51:25.253Z",
+            "created_at": "2021-06-24T04:35:55.563Z",
+            "updated_at": "2021-06-24T04:51:25.537Z",
+            "title": "benefit 1",
+            "benefitRent": [
+                {
+                    "id": 1,
+                    "name": "helm",
+                    "value": "yes"
+                },
+                {
+                    "id": 2,
+                    "name": "fuel",
+                    "value": "no"
+                },
+                {
+                    "id": 3,
+                    "name": "coat",
+                    "value": "yes"
+                },
+                {
+                    "id": 4,
+                    "name": "insurance",
+                    "value": "no"
+                }
+            ]
+        },
+        "published_at": "2021-06-24T08:38:14.781Z",
+        "created_at": "2021-06-24T08:34:45.236Z",
+        "updated_at": "2021-06-24T08:38:14.842Z",
+        "isDiscount": true,
+        "typeMotor": "matic",
+        "thumbnailURL": "https://imgcdn.oto.com/medium/gallery/color/73/987/honda-vario-125-esp-color-440401.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Kawasaki KLX 2021",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\n#### Info\n- 150cc\n- 2021\n- for 2 people",
+        "featured": null,
+        "rent_price": {
+            "id": 3,
+            "motor": null,
+            "published_at": "2021-06-24T09:03:49.995Z",
+            "created_at": "2021-06-24T09:03:33.840Z",
+            "updated_at": "2021-06-24T09:03:50.065Z",
+            "title": "price 30000/day",
+            "priceList": [
+                {
+                    "id": 3,
+                    "price": null,
+                    "totalHour": 1,
+                    "discount": 0,
+                    "pricePerHour": 1250
+                }
+            ]
+        },
+        "benefit": {
+            "id": 1,
+            "published_at": "2021-06-24T04:51:25.253Z",
+            "created_at": "2021-06-24T04:35:55.563Z",
+            "updated_at": "2021-06-24T04:51:25.537Z",
+            "title": "benefit 1",
+            "benefitRent": [
+                {
+                    "id": 1,
+                    "name": "helm",
+                    "value": "yes"
+                },
+                {
+                    "id": 2,
+                    "name": "fuel",
+                    "value": "no"
+                },
+                {
+                    "id": 3,
+                    "name": "coat",
+                    "value": "yes"
+                },
+                {
+                    "id": 4,
+                    "name": "insurance",
+                    "value": "no"
+                }
+            ]
+        },
+        "published_at": "2021-06-24T09:01:55.781Z",
+        "created_at": "2021-06-24T09:01:13.837Z",
+        "updated_at": "2021-06-24T09:04:04.565Z",
+        "isDiscount": true,
+        "typeMotor": "manual",
+        "thumbnailURL": "http://www.autoini.com/wp-content/uploads/2020/03/kawasaki-klx-150-black-10.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Supra X 2018",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\n#### Info\n- 125cc\n- 2021\n- for 2 people",
+        "featured": null,
+        "rent_price": {
+            "id": 2,
+            "motor": null,
+            "published_at": "2021-06-24T04:57:40.768Z",
+            "created_at": "2021-06-24T04:54:24.435Z",
+            "updated_at": "2021-06-24T04:57:41.493Z",
+            "title": "price 20000/day",
+            "priceList": [
+                {
+                    "id": 2,
+                    "price": null,
+                    "totalHour": 24,
+                    "discount": 0,
+                    "pricePerHour": 833.333333333
+                }
+            ]
+        },
+        "benefit": {
+            "id": 1,
+            "published_at": "2021-06-24T04:51:25.253Z",
+            "created_at": "2021-06-24T04:35:55.563Z",
+            "updated_at": "2021-06-24T04:51:25.537Z",
+            "title": "benefit 1",
+            "benefitRent": [
+                {
+                    "id": 1,
+                    "name": "helm",
+                    "value": "yes"
+                },
+                {
+                    "id": 2,
+                    "name": "fuel",
+                    "value": "no"
+                },
+                {
+                    "id": 3,
+                    "name": "coat",
+                    "value": "yes"
+                },
+                {
+                    "id": 4,
+                    "name": "insurance",
+                    "value": "no"
+                }
+            ]
+        },
+        "published_at": "2021-06-24T09:05:18.462Z",
+        "created_at": "2021-06-24T09:04:58.951Z",
+        "updated_at": "2021-06-24T09:05:18.538Z",
+        "isDiscount": false,
+        "typeMotor": "semimanual",
+        "thumbnailURL": "https://d2pa5gi5n2e1an.cloudfront.net/webp/global/images/product/motorcycle/Honda_Supra_X125/Honda_Supra_X125_L_4.jpg"
+    }
+]
