@@ -5,7 +5,12 @@ const CardMotorHorizontal = ({ classes, img, title, url, pricePerHour, isDiscoun
     return (
         <div className={classes ? `card__motor-horizontal ${classes}` : 'card__motor-horizontal'} {...rest}>
             <div className='card__motor-horizontal-heading margin-bottom-12'>
-                <LabelTag text='discount' />
+                {isDiscount && <LabelTag text='discount' style={{
+                    position: 'absolute',
+                    top: '0',
+                    left: '0',
+                    zIndex: '2'
+                }} />}
                 <img
                     className='card__motor-horizontal-image'
                     src={img}

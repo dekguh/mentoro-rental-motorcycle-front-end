@@ -14,6 +14,7 @@ const DiscountSection = ({classes, dataDiscount, ...rest}) => {
                         url='#'
                         title={data.name}
                         pricePerHour={data.rent_price.priceList[0].pricePerHour}
+                        isDiscount={data.isDiscount}
                     />
                 </li>
             ))}
