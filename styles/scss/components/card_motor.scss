@@ -1,0 +1,22 @@
+.card__motor-horizontal {
+    padding: 12px;
+    border-radius: 4px;
+    box-shadow: 0 0 8px rgba($color: #000000, $alpha: .05);
+
+    .card__motor-horizontal-heading {
+        position: relative;
+        text-align: center;
+    }
+
+    .card__motor-horizontal-image {
+        max-width: 120px;
+        width: 100%;
+        height: 120px;
+        object-fit: cover;
+    }
+
+    .card__motor-horizontal-price {
+        color: $color-primary;
+        font-size: 12px;
+    }
+}

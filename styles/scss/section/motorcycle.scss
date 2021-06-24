@@ -23,3 +23,14 @@
         margin: 0 8px;
     }
 }
+
+.list__discount {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+
+    li {
+        flex: 0 1 50%;
+        padding: 0 8px;
+    }
+}
