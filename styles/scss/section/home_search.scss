@@ -1,0 +1,39 @@
+.homesearch__wrap {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    .homesearch__content {
+        flex: 1 1 auto;
+    }
+
+    .homesearch__notif {
+        flex: 0 1 auto;
+        padding-left: 16px;
+    }
+}
+
+.homesearch__notif-icon {
+    font-size: 22px;
+}
+
+.is__notif {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    z-index: 2;
+    display: block;
+    height: 12px;
+    width: 12px;
+    border: 2px solid $color-secondary;
+    border-radius: 100%;
+    background-color: #FFFFFF;
+}
+
+.form__search-icon {
+    color: $color-primary;
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+}
