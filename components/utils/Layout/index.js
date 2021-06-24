@@ -2,7 +2,7 @@ import Navigation from '../../organisms/Navigation';
 
 const Layout = ({ children }) => {
     return (
-        <div className='container'>
+        <div>
             {children}
             <Navigation />
         </div>
