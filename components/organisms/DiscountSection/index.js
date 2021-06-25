@@ -2,7 +2,18 @@ import { useState, useEffect } from 'react'
 import TitleSection from '../../molecules/TitleSection'
 import CardMotorHorizontal from '../../molecules/card/CardMotorHorizontal'
 
-const DiscountSection = ({classes, dataDiscount, ...rest}) => {
+const DiscountSection = ({classes, dataResult, showItem, ...rest}) => {
+    const [dataDiscount, setDataDiscount] = useState([]);
+    useEffect(() => {
+        const fetchData = async() => {
+            const filtered = dataResult.filter(data => data.isDiscount == true);
+            const sorted = filtered.sort((a, b) => b.id - a.id);
+            const limitShow = sorted.slice(0, showItem)
+            setDataDiscount(limitShow);
+        }
+        fetchData();
+    }, [dataResult]);
+
     return (
         <div className={classes} {...rest}>
             <TitleSection component='h4' text='Discount' classes='margin-bottom-16' />
@@ -21,6 +32,10 @@ const DiscountSection = ({classes, dataDiscount, ...rest}) => {
             </ul>
         </div>
     )
+}
+
+DiscountSection.defaultProps = {
+    showItem: 2
 }
 
 export default DiscountSection

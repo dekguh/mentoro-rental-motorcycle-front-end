@@ -1,11 +1,10 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import HomeHead from '../components/organisms/HomeHead';
 import TypeMotorList from '../components/organisms/TypeMotorList';
 import DiscountSection from '../components/organisms/DiscountSection';
-import dataMotor from '../components/utils/data/dataMotor';
+import Api from '../components/utils/Api';
 
-export default function Home({ dataDiscount }) {
+export default function Home({ dataResult }) {
   return (
     <div className='home__wrapper'>
       <div className='home__search-wrap'>
@@ -14,7 +13,7 @@ export default function Home({ dataDiscount }) {
       </div>
 
       <div className='home__content-wrap'>
-        <DiscountSection dataDiscount={dataDiscount} />
+        <DiscountSection dataResult={dataResult} showItem={2} />
       </div>
     </div>
   )
@@ -22,12 +21,11 @@ export default function Home({ dataDiscount }) {
 
 
 export async function getServerSideProps() {
-  const filtered = dataMotor.filter(data => data.isDiscount == true);
-  const sorted = filtered.sort((a, b) => b.id - a.id);
-  const limit = sorted.slice(0, 2)
+  const response = await Api.get('motors');
+  const result = response.data;
   return {
     props: {
-      dataDiscount: limit
+      dataResult: result,
     }
   }
 }
