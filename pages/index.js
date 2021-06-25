@@ -2,6 +2,7 @@ import Head from 'next/head';
 import HomeHead from '../components/organisms/HomeHead';
 import TypeMotorList from '../components/organisms/TypeMotorList';
 import DiscountSection from '../components/organisms/DiscountSection';
+import ListMotorSection from '../components/organisms/ListMotorSection';
 import Api from '../components/utils/Api';
 
 export default function Home({ dataResult }) {
@@ -13,7 +14,8 @@ export default function Home({ dataResult }) {
       </div>
 
       <div className='home__content-wrap'>
-        <DiscountSection dataResult={dataResult} showItem={2} />
+        <DiscountSection dataResult={dataResult} showItem={2} classes='margin-bottom-20' />
+        <ListMotorSection dataResult={dataResult} classes='margin-bottom-40' />
       </div>
     </div>
   )

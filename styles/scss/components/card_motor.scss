@@ -20,3 +20,35 @@
         font-size: 12px;
     }
 }
+
+.card__motor-vertical {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: 12px;
+    border-radius: 4px;
+    box-shadow: 0 0 8px rgba($color: #000000, $alpha: .05);
+
+    .card__motor-vertical-heading {
+        flex: 0 1 auto;
+        position: relative;
+        text-align: center;
+    }
+
+    .card__motor-vertical-body {
+        flex: 1 1 auto;
+        padding-left: 12px;
+    }
+
+    .card__motor-vertical-image {
+        max-width: 90px;
+        width: 100%;
+        height: 90px;
+        object-fit: cover;
+    }
+
+    .card__motor-vertical-price {
+        color: $color-primary;
+        font-size: 12px;
+    }
+}
