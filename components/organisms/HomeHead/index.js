@@ -1,11 +1,16 @@
-import FormSearch from "../../molecules/form/FormSearch";
-import BellNotif from "../../molecules/BellNotif";
+import FormSearch from '../../molecules/form/FormSearch';
+import BellNotif from '../../molecules/BellNotif';
+import { connect } from 'react-redux';
+import { updateSearchTextAct } from '../../utils/redux/search/action';
 
-const HomeHead = () => {
+const HomeHead = ({ updateTextAct }) => {
+    const handleChangeText = e => {
+        updateTextAct(e.target.value);
+    }
     return (
         <div className='homesearch__wrap'>
             <div className='homesearch__content'>
-                <FormSearch />
+                <FormSearch onChange={handleChangeText} />
             </div>
 
             <div className='homesearch__notif'>
@@ -17,4 +22,10 @@ const HomeHead = () => {
     )
 }
 
-export default HomeHead
+const mapDispatchToProps = dispatch => {
+    return {
+        updateTextAct: text => dispatch(updateSearchTextAct(text))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(HomeHead)

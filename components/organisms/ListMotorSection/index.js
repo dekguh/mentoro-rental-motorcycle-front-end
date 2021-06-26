@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react';
 import TitleSection from '../../molecules/TitleSection';
 import CardMotorVertical from '../../molecules/card/CardMotorVertical';
+import { connect } from 'react-redux';
 
-const ListMotorSection = ({classes, dataResult, showItem, ...rest}) => {
+const ListMotorSection = ({searchText, classes, dataResult, showItem, ...rest}) => {
     const [dataMotor, setDataMotor] = useState([]);
 
     useEffect(() => {
-        const fetchData = async() => {
-            const sorted = dataResult.sort((a, b) => b.id - a.id);
-            setDataMotor(sorted);
-        }
-        fetchData();
-    }, [dataResult]);
+        const sorted = dataResult.sort((a, b) => b.id - a.id);
+        const filterSearch = sorted.filter(
+            data => data.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1
+        )
+        setDataMotor(filterSearch);
+    }, [dataResult, searchText]);
 
     return (
         <div className={classes} {...rest}>
@@ -31,4 +32,10 @@ const ListMotorSection = ({classes, dataResult, showItem, ...rest}) => {
     )
 }
 
-export default ListMotorSection
+const mapStateToProps = state => {
+    return {
+        searchText: state.search.text
+    }
+}
+
+export default connect(mapStateToProps, null)(ListMotorSection)
