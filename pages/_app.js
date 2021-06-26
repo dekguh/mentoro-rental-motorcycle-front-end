@@ -1,5 +1,6 @@
 import 'reset-css';
 import Layout from '../components/utils/Layout';
+import { wrapper } from '../components/utils/redux/store';
 import '../styles/scss/main.scss';
 
 function MyApp({ Component, pageProps }) {
@@ -8,4 +9,4 @@ function MyApp({ Component, pageProps }) {
   </Layout>)
 }
 
-export default MyApp
+export default wrapper.withRedux(MyApp)
