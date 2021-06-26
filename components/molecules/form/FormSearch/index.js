@@ -1,7 +1,7 @@
 import { Search } from "react-bootstrap-icons";
 import Input from "../../../atomics/form/Input";
 
-const FormSearch = () => {
+const FormSearch = ({...rest}) => {
     return (
         <div style={{ position: 'relative' }}>
             <i className='form__search-icon'>
@@ -13,6 +13,7 @@ const FormSearch = () => {
                 style={{
                     paddingLeft: '40px'
                 }}
+                {...rest}
             />
         </div>
     )
