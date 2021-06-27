@@ -6,7 +6,7 @@ const DetailTitlePage = ({ dataResult }) => {
     return (
         <div className='detail__wrapper margin-bottom-40'>
             <DetailHead />
-            {dataResult && <div className='detail__content-wrap'>
+            <div className='detail__content-wrap'>
                 <DetailContent
                     image={dataResult.thumbnailURL}
                     title={dataResult.name}
@@ -16,19 +16,31 @@ const DetailTitlePage = ({ dataResult }) => {
                     benefit={dataResult.benefit.benefitRent}
                     priceList={dataResult.rent_price.priceList}
                 />
-            </div>}
+            </div>
         </div>
     )
 }
 
 export async function getServerSideProps(ctx) {
-    const getId = ctx.params.title.substring(0, 1);
-    const response = await Api.get(`/motors/${getId}`);
-    const result = response.data;
+    try {
+        const getId = ctx.params.title.substring(0, 1);
+        const response = await Api.get(`/motors/${getId}`);
+        const result = response.data;
 
-    return {
-        props: {
-            dataResult: result,
+        return {
+            props: {
+                dataResult: result,
+            }
+        }
+    }catch(err) {
+        return {
+            redirect: {
+                permanent: false,
+                destination: '/'
+            },
+            props: {
+                dataResult: {},
+            }
         }
     }
 }
