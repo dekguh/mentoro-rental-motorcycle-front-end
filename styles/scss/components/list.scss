@@ -1,0 +1,69 @@
+.list__benefit {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+
+    li {
+        flex: 0 1 33.33%;
+        padding: 12px 8px 12px 8px;
+        border-bottom: 1px solid $color-gray-primary;
+
+        .benefit-name {
+            font-weight: 600;
+            color: $color-primary;
+            margin-right: 8px;
+        }
+    }
+}
+
+.list__price-rent {
+    li {
+        display: flex;
+        flex-flow: row nowrap;
+        padding: 8px 0;
+        border-bottom: 1px solid $color-gray-primary;
+
+        &:first-child {
+            padding: 8px 0;
+        }
+
+        &:last-child {
+            padding: 8px 0;
+            border-bottom: none;
+        }
+
+        .pricing-content {
+            flex: 1 1 auto;
+
+            .price {
+                margin-right: 4px;
+                font-weight: 500;
+            }
+
+            .discount {
+                position: relative;
+                color: $color-primary;
+                font-size: 10px;
+
+                &::after {
+                    content: '';
+                    height: 1px;
+                    width: 100%;
+                    background-color: $color-primary;
+                    position: absolute;
+                    top: 50%;
+                    left: 0;
+                    right: 0;
+                }
+            }
+        }
+
+        .day-content {
+            flex: 0 1 auto;
+            text-align: right;
+        }
+    }
+}

@@ -18,3 +18,12 @@
     font-size: 12px;
     color: #FFFFFF;
 }
+
+.back__to-link {
+    font-size: 16px;
+    color: #FFFFFF !important;
+
+    &:hover {
+        color: $color-primary !important;
+    }
+}
