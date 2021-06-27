@@ -4,7 +4,8 @@ import { wrapper } from '../components/utils/redux/store';
 import '../styles/scss/main.scss';
 
 function MyApp({ Component, pageProps }) {
-  return (<Layout>
+  return (
+  <Layout>
     <Component {...pageProps} />
   </Layout>)
 }
