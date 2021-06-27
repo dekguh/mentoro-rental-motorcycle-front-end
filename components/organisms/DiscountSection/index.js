@@ -22,7 +22,7 @@ const DiscountSection = ({classes, dataResult, showItem, ...rest}) => {
                 <li key={i} className='margin-bottom-8'>
                     <CardMotorHorizontal
                         img={data.thumbnailURL}
-                        url='#'
+                        url={`/detail/${data.id}-${data.name.toLowerCase().replace(/ /g, '-')}`}
                         title={data.name}
                         pricePerHour={data.rent_price.priceList[0].pricePerHour}
                         isDiscount={data.isDiscount}

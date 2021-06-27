@@ -3,7 +3,7 @@ import TitleSection from '../../molecules/TitleSection';
 import CardMotorVertical from '../../molecules/card/CardMotorVertical';
 import { connect } from 'react-redux';
 
-const ListMotorSection = ({searchText, classes, dataResult, showItem, ...rest}) => {
+const ListMotorSection = ({searchText, classes, dataResult, showItem}) => {
     const [dataMotor, setDataMotor] = useState([]);
 
     useEffect(() => {
@@ -15,13 +15,13 @@ const ListMotorSection = ({searchText, classes, dataResult, showItem, ...rest}) 
     }, [dataResult, searchText]);
 
     return (
-        <div className={classes} {...rest}>
+        <div className={classes}>
             <TitleSection component='h4' text='List Motorcycle' classes='margin-bottom-16' />
             {dataMotor && dataMotor.map((data, i) => (
                 <div key={i} className='margin-bottom-8'>
                     <CardMotorVertical
                         img={data.thumbnailURL}
-                        url='#'
+                        url={`/detail/${data.id}-${data.name.toLowerCase().replace(/ /g, '-')}`}
                         title={data.name}
                         pricePerHour={data.rent_price.priceList[0].pricePerHour}
                         isDiscount={data.isDiscount}
