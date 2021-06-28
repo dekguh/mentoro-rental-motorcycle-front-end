@@ -16,7 +16,7 @@ export default function NavList() {
                 <Wallet2 />
             </NavItem>
 
-            <NavItem title='profile' slug='#'>
+            <NavItem title='profile' slug='/users/login'>
                 <Person />
             </NavItem>
         </ul>

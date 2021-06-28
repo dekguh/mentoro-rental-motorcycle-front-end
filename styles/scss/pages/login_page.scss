@@ -1,0 +1,17 @@
+.login__head {
+    padding: 20px 20px 60px 20px;
+    background-image: url('/images/bg-topo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #FFFFFF;
+}
+
+.login__content-wrap {
+    position: relative;
+    top: -40px;
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
