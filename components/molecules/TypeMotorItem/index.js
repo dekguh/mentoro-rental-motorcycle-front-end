@@ -1,9 +1,9 @@
 import TextLink from '../../atomics/TextLink'
 
-const TypeMotorItem = ({ img, text, url }) => {
+const TypeMotorItem = ({ img, text, url, onClick }) => {
     return (
         <div className='card__type-motor'>
-            <TextLink url={url}>
+            <TextLink url={url} onClick={onClick}>
                 <i className='card__type-motor-icon'>
                     <img src={img} />
                 </i>
