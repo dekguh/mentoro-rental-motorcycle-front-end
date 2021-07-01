@@ -27,3 +27,22 @@
         color: $color-primary !important;
     }
 }
+
+.alert__box {
+    padding: 12px;
+    color: #FFFFFF;
+    border-radius: 4px;
+    font-size: 12px;
+
+    &.danger {
+        background-color: rgb(248, 110, 110);
+    }
+
+    &.info {
+        background-color: rgb(110, 170, 248);
+    }
+
+    &.success {
+        background-color: rgb(110, 248, 129);
+    }
+}

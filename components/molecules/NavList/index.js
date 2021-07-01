@@ -4,7 +4,7 @@ import NavItem from '../../atomics/NavItem';
 export default function NavList() {
     return(
         <ul className='navigation__list'>
-            <NavItem title='home' slug='#'>
+            <NavItem title='home' slug='/'>
                 <House />
             </NavItem>
 
@@ -16,7 +16,7 @@ export default function NavList() {
                 <Wallet2 />
             </NavItem>
 
-            <NavItem title='profile' slug='/users/login'>
+            <NavItem title='profile' slug='/users'>
                 <Person />
             </NavItem>
         </ul>
