@@ -57,7 +57,7 @@ const LoginSection = () => {
     const handleLogin = e => {
         e.preventDefault()
 
-        async function login() {
+        const login = async () => {
             try {
                 const response = await Api.post('auth/local', {
                     identifier: dataLogin.email,
@@ -102,7 +102,7 @@ const LoginSection = () => {
                         classes='margin-bottom-16'
                     />}
 
-                    <form onSubmit={handleLogin}>
+                    <form method='POST' onSubmit={handleLogin}>
                         <FormGroup
                             classes='margin-bottom-16'
                             labelText='E-mail'
@@ -135,7 +135,7 @@ const LoginSection = () => {
                             <span>forget password? reset <Link href='/users/forget'><a>here</a></Link></span>
                         </div>
 
-                        <Button classes='margin-bottom-16' style={{ width: '100%' }} text='login now'><Person /></Button>
+                        <Button type='submit' classes='margin-bottom-16' style={{ width: '100%' }} text='login now'><Person /></Button>
                     </form>
 
                     <div style={{ textAlign: 'center' }}>
