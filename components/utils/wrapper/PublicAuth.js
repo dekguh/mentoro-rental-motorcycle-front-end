@@ -9,10 +9,10 @@ const PublicAuth = ({isLogged, updateStatusLogin, children}) => {
 
     useEffect(() => {
         const cookies = nookies.get(undefined)
-        const dataLogged = cookies.length > 0 && JSON.parse(cookies.dataLogged) || undefined
+        const dataLogged = cookies.dataLogged && JSON.parse(cookies.dataLogged) || undefined
 
-        if(!dataLogged?.jwt || !dataLogged) updateStatusLogin(false)
-        if(dataLogged?.jwt) Router.push('/users')
+        if(dataLogged && dataLogged.jwt) Router.push('/users')
+        if(!dataLogged.jwt || !dataLogged) updateStatusLogin(false)
     }, [])
 
     return (

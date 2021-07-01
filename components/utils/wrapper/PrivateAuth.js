@@ -9,7 +9,7 @@ const PrivateAuth = ({isLogged, updateStatusLogin, children}) => {
 
     useEffect(() => {
         const cookies = nookies.get(undefined)
-        const dataLogged = cookies.length > 0 && JSON.parse(cookies.dataLogged) || undefined
+        const dataLogged = cookies.dataLogged && JSON.parse(cookies.dataLogged) || undefined
 
         if(!dataLogged?.jwt || !dataLogged) Router.push('/users/login')
         if(dataLogged?.jwt) updateStatusLogin(true)

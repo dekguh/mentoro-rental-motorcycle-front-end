@@ -8,8 +8,10 @@ import Alert from '../../atomics/Alert'
 import { emailValidRegex } from '../../utils/handle/users'
 import Api from '../../utils/Api'
 import nookies from 'nookies'
+import { useRouter } from 'next/router'
 
 const LoginSection = () => {
+    const Router = useRouter()
     const [dataLogin, setDataLogin] = useState({ email: '', password: ''})
     const [statusErr, setStatusErr] = useState({
         global: {
@@ -64,6 +66,14 @@ const LoginSection = () => {
                     password: dataLogin.password
                 })
                 const result = response.data
+                if(result) nookies.set(undefined, 'dataLogged', JSON.stringify({
+                    jwt: result.jwt,
+                    confirmed: result.confirmed,
+                    blocked: result.blocked,
+                    email: result.email,
+                    username: result.username
+                }))
+                Router.push('/users')
             }catch(err) {
                 return setStatusErr({...statusErr, global: {
                     message: 'failed login! please check your email/password',
