@@ -12,7 +12,7 @@ const PublicAuth = ({isLogged, updateStatusLogin, children}) => {
         const dataLogged = cookies.dataLogged && JSON.parse(cookies.dataLogged) || undefined
 
         if(dataLogged && dataLogged.jwt) Router.push('/users')
-        if(!dataLogged.jwt || !dataLogged) updateStatusLogin(false)
+        if(!dataLogged?.jwt || !dataLogged) updateStatusLogin(false)
     }, [])
 
     return (
