@@ -8,7 +8,7 @@ const PrivateAuth = ({isLogged, isBilling, updateStatusLogin, getBillingData, ch
     const Router = useRouter()
 
     useEffect(() => {
-        nookies.destroy(undefined, 'dataLogged')
+        //nookies.destroy(undefined, 'dataLogged')
         const cookies = nookies.get(undefined)
         const dataLogged = cookies.dataLogged && JSON.parse(cookies.dataLogged) || undefined
 
