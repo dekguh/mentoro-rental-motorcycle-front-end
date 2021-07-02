@@ -1,5 +1,7 @@
 const initState = {
-    statusLogin: false
+    statusLogin: false,
+    billingData: {},
+    isBilling: true,
 }
 
 export const userReducer = (state = initState, action) => {
@@ -8,6 +10,16 @@ export const userReducer = (state = initState, action) => {
             return {
                 ...state,
                 statusLogin: action.payload
+            }
+        case 'SET_BILLING_USER':
+            return {
+                ...state,
+                billingData: action.payload
+            }
+        case 'HAVE_BILLING_DATA':
+            return {
+                ...state,
+                isBilling: action.payload
             }
         default:
             return state

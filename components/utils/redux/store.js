@@ -2,8 +2,11 @@ import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import { createWrapper } from 'next-redux-wrapper';
 import { searchReducer } from './search/reduce';
 import { userReducer } from './user/reduce';
+import createSagaMiddleware from 'redux-saga';
+import { rootSaga } from './sagas';
 
-const middleware = [];
+const sagaMiddleware = createSagaMiddleware();
+const middleware = [sagaMiddleware];
 
 const composeEnhancers =
   typeof window === 'object' &&
@@ -19,5 +22,10 @@ const combineAll = combineReducers({
     user: userReducer
 })
 
-const makeStore = () => createStore(combineAll, enhancer);
+const makeStore = (context) => {
+    const store = createStore(combineAll, enhancer)
+    sagaMiddleware.run(rootSaga)
+    return store;
+};
+
 export const wrapper = createWrapper(makeStore);
