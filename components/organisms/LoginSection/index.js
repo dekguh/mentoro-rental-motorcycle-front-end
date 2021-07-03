@@ -59,7 +59,6 @@ const LoginSection = () => {
 
     const handleLogin = e => {
         e.preventDefault()
-        setIsLoading(true)
 
         const login = async () => {
             try {
@@ -108,6 +107,7 @@ const LoginSection = () => {
             valid: true
         }})
 
+        setIsLoading(true)
         login()
     }
 
