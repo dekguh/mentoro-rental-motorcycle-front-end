@@ -12,6 +12,7 @@ import { useRouter } from 'next/router'
 
 const LoginSection = () => {
     const Router = useRouter()
+    const [isLoading, setIsLoading] = useState(false)
     const [dataLogin, setDataLogin] = useState({ email: '', password: ''})
     const [statusErr, setStatusErr] = useState({
         global: {
@@ -58,6 +59,7 @@ const LoginSection = () => {
 
     const handleLogin = e => {
         e.preventDefault()
+        setIsLoading(true)
 
         const login = async () => {
             try {
@@ -65,16 +67,30 @@ const LoginSection = () => {
                     identifier: dataLogin.email,
                     password: dataLogin.password
                 })
+
                 const result = response.data
-                if(result) nookies.set(undefined, 'dataLogged', JSON.stringify({
+                setIsLoading(false)
+
+                if(result.user.blocked) return setStatusErr({...statusErr, global: {
+                    message: 'your account has been blocked! please contact admin',
+                    valid: false
+                }})
+
+                if(!result.user.confirmed) return setStatusErr({...statusErr, global: {
+                    message: 'your account has not been confirmed, please check your email',
+                    valid: false
+                }})
+
+                if(result.user.confirmed && !result.user.blocked) nookies.set(undefined, 'dataLogged', JSON.stringify({
                     jwt: result.jwt,
-                    confirmed: result.confirmed,
-                    blocked: result.blocked,
-                    email: result.email,
-                    username: result.username
+                    confirmed: result.user.confirmed,
+                    blocked: result.user.blocked,
+                    email: result.user.email,
+                    username: result.user.username
                 }))
-                Router.push('/users')
+                return Router.push('/users')
             }catch(err) {
+                setIsLoading(false)
                 return setStatusErr({...statusErr, global: {
                     message: 'failed login! please check your email/password',
                     valid: false
@@ -96,7 +112,7 @@ const LoginSection = () => {
     }
 
     return (
-        <div className='login__wrap'>
+        <div className='login__wrap margin-bottom-40'>
             <DetailHead />
 
             <div className='login__content-wrap'>
@@ -145,7 +161,11 @@ const LoginSection = () => {
                             <span>forget password? reset <Link href='/users/forget'><a>here</a></Link></span>
                         </div>
 
-                        <Button type='submit' classes='margin-bottom-16' style={{ width: '100%' }} text='login now'><Person /></Button>
+                        <Button
+                        type='submit'
+                        classes='margin-bottom-16'
+                        style={{ width: '100%' }}
+                        text={isLoading ? `process login..` : 'login now'}><Person /></Button>
                     </form>
 
                     <div style={{ textAlign: 'center' }}>
