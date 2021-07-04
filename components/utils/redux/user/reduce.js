@@ -1,6 +1,14 @@
 const initState = {
     statusLogin: false,
-    billingData: {},
+    billingData: {
+        id: null,
+        fullName: '',
+        address: '',
+        district: '',
+        province: '',
+        country: '',
+        phoneNumber: ''
+    },
     isBilling: true,
 }
 

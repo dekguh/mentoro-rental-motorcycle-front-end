@@ -2,6 +2,7 @@ import Api from '../../Api'
 import nookies from 'nookies'
 import { call, put, takeEvery } from 'redux-saga/effects'
 import { GET_BILLING_USER, setBillingDataAct, setHaveBillingDataAct } from '../user/action'
+import { userLogout } from '../../handle/users'
 
 function* watchBillingUser() {
     try {
@@ -17,6 +18,8 @@ function* watchBillingUser() {
         yield put(setBillingDataAct(response.data[0]))
     }catch(err) {
         yield put(setBillingDataAct({}))
+        yield put(setHaveBillingDataAct(false))
+        userLogout()
     }
 }
 
