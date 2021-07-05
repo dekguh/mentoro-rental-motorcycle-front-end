@@ -1,0 +1,31 @@
+.card__notif {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: 15px;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 12px rgba($color: #000000, $alpha: .05);
+
+    .card__notif-heading {
+        flex: 0 1 auto;
+        padding-right: 12px;
+    }
+
+    .card__notif-icon-wrap {
+        position: relative;
+        background-color: $color-primary;
+        height: 50px;
+        width: 50px;
+        border-radius: 4px;
+
+        .card__notif-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 21px;
+            color: #FFFFFF;
+        }
+    }
+}
