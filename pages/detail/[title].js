@@ -15,6 +15,7 @@ const DetailTitlePage = ({ dataResult }) => {
                     pricePerHour={dataResult.rent_price.priceList[0].pricePerHour}
                     benefit={dataResult.benefit.benefitRent}
                     priceList={dataResult.rent_price.priceList}
+                    listDateBooked={dataResult.book_dates}
                 />
             </div>
         </div>

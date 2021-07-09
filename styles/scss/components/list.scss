@@ -67,3 +67,20 @@
         }
     }
 }
+
+.list__calendar {
+    text-align: center;
+
+    .pending__date {
+        color: orange !important;
+    }
+
+    .pay__date {
+        color: green !important;
+    }
+
+    .info__date-img {
+        margin-top: 15px;
+        width: 230px;
+    }
+}
