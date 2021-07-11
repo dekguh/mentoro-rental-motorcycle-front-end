@@ -28,7 +28,7 @@ export const apiCheckCurrentDate = async (current, motor) => {
         const result = response.data
         if(result.length > 0) return {
             valid: true,
-            message: `on date ${new Date(current * 1000)} already booked, please see calendar again`
+            message: `on date ${new Date(current * 1000).toDateString()} already booked, please see calendar again`
         }
         return {
             valid: false,
