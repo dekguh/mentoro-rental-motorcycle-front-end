@@ -86,7 +86,7 @@ const BookingSection = ({ bookingMotorId }) => {
         {isValid && <div className='booking__page-wrap'>
             <DetailHead />
 
-            <div className='detail__content-wrap'>
+            <div className='detail__content-wrap margin-bottom-40'>
                 <div className='booking__page-head'>
                     <h2 className='margin-bottom-8'>Choose Date</h2>
                     <p className='margin-bottom-0'>
