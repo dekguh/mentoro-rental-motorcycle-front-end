@@ -16,6 +16,7 @@ const DetailTitlePage = ({ dataResult }) => {
                     benefit={dataResult.benefit.benefitRent}
                     priceList={dataResult.rent_price.priceList}
                     listDateBooked={dataResult.book_dates}
+                    id={dataResult.id}
                 />
             </div>
         </div>

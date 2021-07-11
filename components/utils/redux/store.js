@@ -4,6 +4,7 @@ import { searchReducer } from './search/reduce';
 import { userReducer } from './user/reduce';
 import createSagaMiddleware from 'redux-saga';
 import { rootSaga } from './sagas';
+import { bookingReducer } from './booking/reduce';
 
 const sagaMiddleware = createSagaMiddleware();
 const middleware = [sagaMiddleware];
@@ -19,7 +20,8 @@ const enhancer = composeEnhancers(
 
 const combineAll = combineReducers({
     search: searchReducer,
-    user: userReducer
+    user: userReducer,
+    booking: bookingReducer
 })
 
 const makeStore = (context) => {

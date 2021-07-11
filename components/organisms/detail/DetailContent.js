@@ -4,8 +4,14 @@ import ListPrice from '../../molecules/list/ListPrice'
 import ReactMarkdown from 'react-markdown'
 import ListCalendar from '../../molecules/bookDate/ListCalendar'
 import { useEffect, useState } from 'react'
+import Button from '../../atomics/form/Button'
+import { JournalPlus } from 'react-bootstrap-icons'
+import { connect } from 'react-redux'
+import { updateMotorIdAct } from '../../utils/redux/booking/action'
+import { useRouter } from 'next/router'
 
-const DetailContent = ({ classes, image, title, isDiscount, pricePerHour, priceList, description, benefit, listDateBooked, ...rest }) => {
+const DetailContent = ({ classes, image, title, isDiscount, pricePerHour, priceList, description, benefit, id, listDateBooked, actUpdateMotorId, ...rest }) => {
+    const Router = useRouter()
     const [pendingDate, setPendingDate] = useState([])
     const [payDate, setPayDate] = useState([])
 
@@ -20,6 +26,11 @@ const DetailContent = ({ classes, image, title, isDiscount, pricePerHour, priceL
         })
         setPayDate(filterPay)
     }, [])
+
+    const handleAddMotorId = e => {
+        actUpdateMotorId(id)
+        Router.push('/booking')
+    }
 
     return (
         <div className={classes ? `detail__content-motor ${classes}` : 'detail__content-motor'} {...rest}>
@@ -59,6 +70,10 @@ const DetailContent = ({ classes, image, title, isDiscount, pricePerHour, priceL
                     excludeDates={[new Date(16821000 * 1000)]}
                     inline
                 />
+
+                <div className='detail__content-booking margin-top-20'>
+                    <Button text='Booking Now' value={id} onClick={handleAddMotorId}><JournalPlus /></Button>
+                </div>
             </div>
         </div>
     )
@@ -68,4 +83,10 @@ DetailContent.defaultProps = {
     isDiscount: false
 }
 
-export default DetailContent
+const mapDispatchToProps = dispatch => {
+    return {
+        actUpdateMotorId: id => dispatch(updateMotorIdAct(id))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(DetailContent)
