@@ -84,3 +84,14 @@
         width: 230px;
     }
 }
+
+.list__vertical-border-bottom {
+    li {
+        padding: 8px 0;
+        border-bottom: 1px solid $color-gray-primary;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+}
