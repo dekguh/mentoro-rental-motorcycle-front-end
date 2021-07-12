@@ -7,9 +7,9 @@ import ListCalendar from '../../molecules/bookDate/ListCalendar'
 import Button from '../../atomics/form/Button'
 import { JournalPlus } from 'react-bootstrap-icons'
 import Alert from '../../atomics/Alert'
-import { updateEndDateBookingAct, updateStartDateBookingAct } from '../../utils/redux/booking/action'
+import { updateEndDateBookingAct, updateStartDateBookingAct, updateTotalDayBookingAct } from '../../utils/redux/booking/action'
 
-const BookingSection = ({ bookingMotorId, actUpdateStartDateBooking, actUpdateEndDateBooking }) => {
+const BookingSection = ({ bookingMotorId, actUpdateStartDateBooking, actUpdateEndDateBooking, actUpdateTotalDayBooking }) => {
     //current today
     const currentToday = new Date().toDateString()
     const currentTodayTime = Math.floor(new Date(`${currentToday} 00:00:00 GMT+0800 (Singapore Standard Time)`).getTime()/1000)
@@ -52,11 +52,11 @@ const BookingSection = ({ bookingMotorId, actUpdateStartDateBooking, actUpdateEn
     }, [dataMotor])
 
     const handleCalendarChange = (dates) => {
-        console.log({dates})
         const [start, end] = dates
         const startTime = new Date(start).getTime()/1000
         const endTime = end && new Date(end).getTime()/1000
         const totalDay = (start && end) && (((endTime - startTime) + 86400) / 86400) || 1
+        actUpdateTotalDayBooking(totalDay)
         actUpdateStartDateBooking(startTime)
         actUpdateEndDateBooking(endTime)
         setDateBook({
@@ -79,6 +79,7 @@ const BookingSection = ({ bookingMotorId, actUpdateStartDateBooking, actUpdateEn
             }
             setErrorMessage(null)
             setIsLoading(false)
+            Router.push('/booking/billing')
         }
 
         setIsLoading(true)
@@ -139,7 +140,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         actUpdateStartDateBooking: start => dispatch(updateStartDateBookingAct(start)),
-        actUpdateEndDateBooking: end => dispatch(updateEndDateBookingAct(end))
+        actUpdateEndDateBooking: end => dispatch(updateEndDateBookingAct(end)),
+        actUpdateTotalDayBooking: total => dispatch(updateTotalDayBookingAct(total))
     }
 }
 
