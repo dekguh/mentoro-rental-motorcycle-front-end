@@ -94,7 +94,13 @@ const BillingCheckoutSection = ({ billingData, bookingMotorId, bookingStartDate,
 
                     <div className='booking__content-total'>
                         <h5 className='margin-top-20'>Total Payment</h5>
-                        <span>IDR 35.000,00</span>
+                        <span>
+                            {dataPayment.totalPay
+                            ? Intl
+                            .NumberFormat('id-ID', { style: 'currency', currency: 'IDR' })
+                            .format(dataPayment.totalPay)
+                            : '-'}
+                        </span>
                     </div>
 
 
