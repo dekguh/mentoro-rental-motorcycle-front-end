@@ -1,7 +1,8 @@
 const initState = {
     motorId: null,
     startDate: null,
-    endDate: null
+    endDate: null,
+    totalDay: null
 }
 
 export const bookingReducer = (state = initState, action) => {
@@ -20,6 +21,11 @@ export const bookingReducer = (state = initState, action) => {
             return {
                 ...state,
                 endDate: action.payload
+            }
+        case 'BOOKING_TOTAL_DAY':
+            return {
+                ...state,
+                totalDay: action.payload
             }
         default:
             return state
