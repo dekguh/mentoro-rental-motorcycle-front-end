@@ -44,8 +44,8 @@ const LoginSection = () => {
     }
 
     const handlePassword = e => {
-        if(e.target.value.length <= 0) return setStatusErr({...statusErr, password: {
-            message: 'input password must filled',
+        if(e.target.value.length <= 1) return setStatusErr({...statusErr, password: {
+            message: 'input password minimal 2 character',
             valid: false
         }})
 
