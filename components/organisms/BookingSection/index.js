@@ -8,6 +8,7 @@ import Button from '../../atomics/form/Button'
 import { JournalPlus } from 'react-bootstrap-icons'
 import Alert from '../../atomics/Alert'
 import { updateEndDateBookingAct, updateStartDateBookingAct, updateTotalDayBookingAct } from '../../utils/redux/booking/action'
+import { checkDateTodayOrGreater } from '../../utils/handle/booking'
 
 const BookingSection = ({ bookingMotorId, actUpdateStartDateBooking, actUpdateEndDateBooking, actUpdateTotalDayBooking }) => {
     //current today
@@ -67,6 +68,8 @@ const BookingSection = ({ bookingMotorId, actUpdateStartDateBooking, actUpdateEn
     }
 
     const handleSubmitDate = e => {
+        if(!dateBook.start || !dateBook.end) return setErrorMessage('start date and end date must selected')
+        if(checkDateTodayOrGreater(dateBook.start, dateBook.end)) return setErrorMessage('start date and end date must today or greater')
         const checkCurrent = async () => {
             const currentStart = Math.floor(new Date(dateBook.start).getTime()/1000)
             for(let i = 1;i <= dateBook.totalDay;i++) {
