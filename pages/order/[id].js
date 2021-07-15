@@ -1,7 +1,5 @@
 import OrderSection from '../../components/organisms/OrderSection'
-import Api from '../../components/utils/Api'
 import PrivateAuth from '../../components/utils/wrapper/PrivateAuth'
-import { parseCookies } from 'nookies'
 
 const OrderPage = ({ id }) => {
     return (
