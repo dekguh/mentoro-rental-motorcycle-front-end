@@ -126,8 +126,7 @@ const OrderSection = ({ orderId }) => {
                         && <ListCountdown
                             date={dataOrder.created_at}
                             onMount={handleCountEndedWaitPayment}
-                            onComplete={handleCountEndedWaitPayment}
-                            millisecond={60000}>
+                            onComplete={handleCountEndedWaitPayment}>
                             <span>payment deadline expires</span>
                         </ListCountdown>}
                         {dataOrder.status == 'wait_payment'
