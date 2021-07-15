@@ -11,7 +11,7 @@ describe('login page', () => {
         const inputEmail = screen.getByPlaceholderText('email')
         fireEvent.change(inputEmail, {
             target: {
-                value: 'deksa#deksa/com'
+                value: 'deksa!deksa.com'
             }
         })
         const messageEmail = screen.getByText(/invalid format email/g)
@@ -23,16 +23,18 @@ describe('login page', () => {
         const inputPassword = screen.getByPlaceholderText('password')
         fireEvent.change(inputPassword, {
             target: {
-                value: '1'
+                value: 'd'
             }
         })
         const messagePassword = screen.getByText(/input password minimal 2 character/g)
         expect(messagePassword).toBeInTheDocument()
     })
 
-    it('should button render', () => {
+    it('should button click invalid', () => {
         render(<LoginSection />)
         const buttonLogin = screen.getByText(/login now/i)
-        expect(buttonLogin).toBeInTheDocument()
+        fireEvent.click(buttonLogin)
+        const loginMessage = screen.getByText(/please check again form/i)
+        expect(loginMessage).toBeInTheDocument()
     })
 })

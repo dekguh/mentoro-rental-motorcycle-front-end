@@ -3,12 +3,13 @@ import { connect } from 'react-redux'
 import DetailHead from '../detail/DetailHead'
 import Alert from '../../atomics/Alert'
 import { useRouter } from 'next/router'
-import { apiCheckMotorId } from '../../utils/Api'
+import Api, { apiCheckMotorId } from '../../utils/Api'
 import ListBookingDate from '../../molecules/order/ListBookingDate'
 import FormTextarea from '../../molecules/form/FormTextarea'
 import Button from '../../atomics/form/Button'
 import { JournalPlus } from 'react-bootstrap-icons'
 import { discountPrice, totalPriceByPriceRent } from '../../utils/handle/booking'
+import { parseCookies } from 'nookies'
 
 const BillingCheckoutSection = ({ billingData, bookingMotorId, bookingStartDate, bookingEndDate, bookingTotalDay }) => {
     const Router = useRouter()
@@ -16,11 +17,15 @@ const BillingCheckoutSection = ({ billingData, bookingMotorId, bookingStartDate,
     const [dataMotor, setDataMotor] = useState()
     const [isLoading, setIsLoading] = useState(false)
     const [dataPayment, setDataPayment] = useState({
-        paymentMethod: '',
         totalPay: '',
-        totalDiscount: '',
+        pricePerHour: null,
         note: ''
     })
+    const [errorMessage, setErrorMessage] = useState(null)
+
+    // cookies
+    const Cookies = parseCookies()
+    const dataLogged = Cookies.dataLogged ? JSON.parse(Cookies.dataLogged) : ''
 
     useEffect(() => {
         const checkValidId = async () => {
@@ -44,10 +49,51 @@ const BillingCheckoutSection = ({ billingData, bookingMotorId, bookingStartDate,
 
             setDataPayment({
                 ...dataPayment,
-                totalPay: Math.ceil(totalPrice)
+                totalPay: Math.ceil(totalPrice),
+                pricePerHour: getPrice.pricePerHour
             })
         }
     }, [dataMotor])
+
+    const handleNote = e => {
+        setDataPayment({
+            ...dataPayment,
+            note: e.target.value
+        })
+    }
+
+    const handleMakeOrder = e => {
+        if(!bookingStartDate || !bookingEndDate) return setErrorMessage('start date & end date must filled')
+
+        const apiMakeOrder = async () => {
+            try {
+                const response = await Api.post('orders', {
+                    email: dataLogged.email,
+                    note: dataPayment.note,
+                    status: "wait_payment",
+                    paymentMethod: null,
+                    motor: dataMotor.id,
+                    totalDay: bookingTotalDay,
+                    payPerHour: dataPayment.pricePerHour,
+                    totalPay: dataPayment.totalPay,
+                    statusDate: "pending_booked",
+                    startDate: new Date(bookingStartDate * 1000),
+                    endDate: new Date(bookingEndDate * 1000),
+                    billing: billingData.id
+                },{
+                    headers: {
+                        Authorization: `Bearer ${dataLogged.jwt}`
+                    }
+                })
+                const result = response.data
+                if(result) Router.push(`/order/${result.id}`)
+                setErrorMessage(null)
+            } catch(err) {
+                setErrorMessage(err.response.data.message)
+            }
+        }
+        apiMakeOrder()
+    }
 
     return (
     <>
@@ -68,6 +114,12 @@ const BillingCheckoutSection = ({ billingData, bookingMotorId, bookingStartDate,
                         />
                     </div>
                 </div>
+
+                {errorMessage && <Alert
+                    text={errorMessage}
+                    type='danger'
+                    classes='margin-top-20'
+                />}
 
                 <div className='booking__page-body margin-top-28'>
                     <h5>Billing Payment</h5>
@@ -90,6 +142,7 @@ const BillingCheckoutSection = ({ billingData, bookingMotorId, bookingStartDate,
                         labelText='Note:'
                         placeholder='note for us'
                         rows={5}
+                        onChange={handleNote}
                     />
 
                     <div className='booking__content-total'>
@@ -105,7 +158,7 @@ const BillingCheckoutSection = ({ billingData, bookingMotorId, bookingStartDate,
 
 
                     <div className='detail__content-booking margin-top-16'>
-                        <Button text={isLoading ? 'Process Order...' : 'Make Order'}><JournalPlus /></Button>
+                        <Button onClick={handleMakeOrder} text={isLoading ? 'Process Order...' : 'Make Order'}><JournalPlus /></Button>
                     </div>
                 </div>
             </div>

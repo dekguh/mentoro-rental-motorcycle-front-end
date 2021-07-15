@@ -42,4 +42,19 @@ export const apiCheckCurrentDate = async (current, motor) => {
     }
 }
 
+export const apiDeleteBookDateByOrderId = async (orderId, jwt) => {
+    try {
+        const response = Api.post('delete-book-dates-by-order-id', {
+            orderId: orderId
+        }, {
+            headers: {
+                Authorization: `Bearer ${jwt}`
+            }
+        })
+        const result = response.data
+    } catch(err) {
+        return err.data.message
+    }
+}
+
 export default Api
