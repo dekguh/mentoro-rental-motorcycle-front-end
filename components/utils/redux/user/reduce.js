@@ -10,6 +10,7 @@ const initState = {
         phoneNumber: ''
     },
     isBilling: true,
+    order: null
 }
 
 export const userReducer = (state = initState, action) => {
@@ -28,6 +29,11 @@ export const userReducer = (state = initState, action) => {
             return {
                 ...state,
                 isBilling: action.payload
+            }
+        case 'SET_ORDER_USER':
+            return {
+                ...state,
+                order: action.payload
             }
         default:
             return state

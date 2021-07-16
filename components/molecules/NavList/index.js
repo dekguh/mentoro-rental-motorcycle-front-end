@@ -12,7 +12,7 @@ export default function NavList() {
                 <Bookshelf />
             </NavItem>
 
-            <NavItem title='order' slug='#'>
+            <NavItem title='order' slug='/order'>
                 <Wallet2 />
             </NavItem>
 
