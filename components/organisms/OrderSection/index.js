@@ -7,8 +7,10 @@ import ListCountdown from '../../molecules/list/ListCountdown'
 import { parseCookies } from 'nookies'
 import Api, { apiDeleteBookDateByOrderId } from '../../utils/Api'
 import Alert from '../../atomics/Alert'
+import axios from 'axios'
 
 const OrderSection = ({ orderId }) => {
+    const [snap, setSnap] = useState()
     const [dataOrder, setDataOrder] = useState(null)
     const [errorMessage, setErrorMessage] = useState(null)
     const Cookies = parseCookies()
@@ -44,8 +46,22 @@ const OrderSection = ({ orderId }) => {
         }
     }
 
+    const snapScript = () => {
+        const script = document.createElement('script')
+        script.src = process.env.NEXT_PUBLIC_IS_PRODUCTION
+            ? 'https://app.midtrans.com/snap/snap.js'
+            : 'https://app.sandbox.midtrans.com/snap/snap.js'
+        script.type = 'text/javascript'
+        script.onload = () => {
+            if('snap' in window) setSnap(window.snap)
+        }
+        script.dataset.clientKey = process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY;
+        document.head.appendChild(script);
+    }
+
     useEffect(() => {
         getOrderId()
+        snapScript()
     }, [])
 
     const handleCountEndedWaitPayment = async (ctx) => {
@@ -53,6 +69,23 @@ const OrderSection = ({ orderId }) => {
             const deleteDate = await apiDeleteBookDateByOrderId(dataOrder.id, dataLogged.jwt)
             return updateOrderStatus('cancel_payment')
         }
+    }
+
+    const handlePayMidtrans = e => {
+        const generatePayment = async () => {
+            try {
+                const response = await axios.post('https://mentoro-midtrans-backend.herokuapp.com/generate-trx-token', {
+                    orderId: orderId.id,
+                    grossAmount: orderId.totalPay
+                })
+                const result = response.data
+                snap.pay(result.token)
+                setErrorMessage(null)
+            } catch (err) {
+                setErrorMessage('failed make payment, please contact admin')
+            }
+        }
+        generatePayment()
     }
 
     return (
@@ -130,7 +163,7 @@ const OrderSection = ({ orderId }) => {
                             <span>payment deadline expires</span>
                         </ListCountdown>}
                         {dataOrder.status == 'wait_payment'
-                        && <Button text='Pay Now'><JournalPlus /></Button>}
+                        && <Button text='Pay Now' onClick={handlePayMidtrans}><JournalPlus /></Button>}
                     </div>
                 </div>
             </div>
