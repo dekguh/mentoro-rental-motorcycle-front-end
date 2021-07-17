@@ -48,9 +48,7 @@ const OrderSection = ({ orderId }) => {
 
     const snapScript = () => {
         const script = document.createElement('script')
-        script.src = process.env.NEXT_PUBLIC_IS_PRODUCTION
-            ? 'https://app.midtrans.com/snap/snap.js'
-            : 'https://app.sandbox.midtrans.com/snap/snap.js'
+        script.src = 'https://app.sandbox.midtrans.com/snap/snap.js'
         script.type = 'text/javascript'
         script.onload = () => {
             if('snap' in window) setSnap(window.snap)
@@ -79,7 +77,7 @@ const OrderSection = ({ orderId }) => {
                     grossAmount: orderId.totalPay
                 })
                 const result = response.data
-                snap.pay(result.token)
+                console.log(result)
                 setErrorMessage(null)
             } catch (err) {
                 setErrorMessage('failed make payment, please contact admin')
@@ -159,7 +157,8 @@ const OrderSection = ({ orderId }) => {
                         && <ListCountdown
                             date={dataOrder.created_at}
                             onMount={handleCountEndedWaitPayment}
-                            onComplete={handleCountEndedWaitPayment}>
+                            onComplete={handleCountEndedWaitPayment}
+                            millisecond={86400000}>
                             <span>payment deadline expires</span>
                         </ListCountdown>}
                         {dataOrder.status == 'wait_payment'
