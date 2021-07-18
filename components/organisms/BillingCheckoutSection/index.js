@@ -64,6 +64,7 @@ const BillingCheckoutSection = ({ billingData, bookingMotorId, bookingStartDate,
 
     const handleMakeOrder = e => {
         if(!bookingStartDate || !bookingEndDate) return setErrorMessage('start date & end date must filled')
+        setIsLoading(true)
 
         const apiMakeOrder = async () => {
             try {
@@ -88,8 +89,10 @@ const BillingCheckoutSection = ({ billingData, bookingMotorId, bookingStartDate,
                 const result = response.data
                 if(result) Router.push(`/order/${result.id}`)
                 setErrorMessage(null)
+                setIsLoading(false)
             } catch(err) {
                 setErrorMessage(err.response.data.message)
+                setIsLoading(false)
             }
         }
         apiMakeOrder()

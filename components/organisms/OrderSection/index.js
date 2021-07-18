@@ -11,6 +11,8 @@ import axios from 'axios'
 
 const OrderSection = ({ orderId }) => {
     const [snap, setSnap] = useState()
+    const [tokenPayment, setTokenPayment] = useState()
+    const [isLoading, setIsLoading] = useState(false)
     const [dataOrder, setDataOrder] = useState(null)
     const [errorMessage, setErrorMessage] = useState(null)
     const Cookies = parseCookies()
@@ -46,10 +48,28 @@ const OrderSection = ({ orderId }) => {
         }
     }
 
+    const updateBookDateStatus = async (status) => {
+        try {
+            const response = await Api.put(`update-book-dates-by-order-id`, {
+                status: status,
+                orderId: orderId
+            },{
+                headers: {
+                    Authorization: `Bearer ${dataLogged.jwt}`
+                }
+            })
+            const result = response.data
+            setErrorMessage(null)
+        } catch (err) {
+            setErrorMessage('failed update book date')
+        }
+    }
+
     const snapScript = () => {
         const script = document.createElement('script')
         script.src = 'https://app.sandbox.midtrans.com/snap/snap.js'
         script.type = 'text/javascript'
+        script.crossOrigin
         script.onload = () => {
             if('snap' in window) setSnap(window.snap)
         }
@@ -69,18 +89,43 @@ const OrderSection = ({ orderId }) => {
         }
     }
 
+    const handleSuccess = (result) => {
+        const updateStatus = async () => {
+            updateBookDateStatus('pay_booked')
+            updateOrderStatus('success_payment')
+        }
+        updateStatus()
+    }
+
+    const handleSnapPay = (token) => {
+        return snap.pay(token, {
+            onSuccess: handleSuccess,
+            onPending: function(result){console.log('pending');console.log(result);},
+            onError: function(result){console.log('error');console.log(result);},
+            onClose: function(){console.log('customer closed the popup without finishing the payment');}
+        })
+    }
+
     const handlePayMidtrans = e => {
+        setIsLoading(true)
+        if(tokenPayment) {
+            handleSnapPay(tokenPayment)
+            return setIsLoading(false)
+        }
+
         const generatePayment = async () => {
             try {
                 const response = await axios.post('https://mentoro-midtrans-backend.herokuapp.com/generate-trx-token', {
-                    orderId: orderId.id,
-                    grossAmount: orderId.totalPay
+                    orderId: dataOrder.id,
+                    grossAmount: parseInt(dataOrder.totalPay)
                 })
                 const result = response.data
-                console.log(result)
+                setIsLoading(false)
+                setTokenPayment(result.token)
                 setErrorMessage(null)
+                return handleSnapPay(result.token)
             } catch (err) {
-                setErrorMessage('failed make payment, please contact admin')
+                return setErrorMessage('failed make payment, please contact admin')
             }
         }
         generatePayment()
@@ -157,12 +202,13 @@ const OrderSection = ({ orderId }) => {
                         && <ListCountdown
                             date={dataOrder.created_at}
                             onMount={handleCountEndedWaitPayment}
-                            onComplete={handleCountEndedWaitPayment}
-                            millisecond={86400000}>
+                            onComplete={handleCountEndedWaitPayment}>
                             <span>payment deadline expires</span>
                         </ListCountdown>}
                         {dataOrder.status == 'wait_payment'
-                        && <Button text='Pay Now' onClick={handlePayMidtrans}><JournalPlus /></Button>}
+                        && <Button
+                            text={isLoading ? 'Process Payment...' : 'Pay Now'}
+                            onClick={handlePayMidtrans}><JournalPlus /></Button>}
                     </div>
                 </div>
             </div>
