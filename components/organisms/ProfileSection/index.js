@@ -6,8 +6,13 @@ import TotalTransaction from '../../molecules/profile/TotalTransaction'
 import TotalOrder from '../../molecules/profile/TotalOrder'
 import Logout from '../../molecules/profile/Logout'
 import { PencilSquare } from 'react-bootstrap-icons'
+import { GET_ORDER_USER } from '../../utils/redux/user/action'
 
-const ProfileSection = ({ infoBilling }) => {
+const ProfileSection = ({ infoBilling, dataOrder, actGetOrdersUser }) => {
+    useEffect(() => {
+        actGetOrdersUser()
+    }, [])
+
     return (
         <div>
             <DetailHead />
@@ -15,7 +20,7 @@ const ProfileSection = ({ infoBilling }) => {
                 <div className='profile__content-heading margin-bottom-16' style={{ textAlign: 'center' }}>
                     <img className='profile__content-photo margin-bottom-8' src='/images/blank-profile.png' />
                     <h5 className='profile__content-name'>
-                        <span>I Kadek Teguh Mahesa</span>
+                        <span>{infoBilling ? infoBilling.fullName : '-'}</span>
                         <Link href='/users/billing'>
                             <a className='profile__content-edit margin-left-8'><PencilSquare /></a>
                         </Link>
@@ -24,8 +29,8 @@ const ProfileSection = ({ infoBilling }) => {
                 </div>
 
                 <div className='profile__content-count'>
-                    <TotalOrder />
-                    <TotalTransaction />
+                    <TotalOrder dataOrder={dataOrder} />
+                    <TotalTransaction dataOrder={dataOrder} />
                     <Logout />
                 </div>
             </div>
@@ -36,8 +41,15 @@ const ProfileSection = ({ infoBilling }) => {
 const mapStateToProps = state => {
     return {
         infoBilling: state.user.billingData,
-        isBilling: state.user.isBilling
+        isBilling: state.user.isBilling,
+        dataOrder: state.user.order
     }
 }
 
-export default connect(mapStateToProps, null)(ProfileSection)
+const mapDispatchToProps = dispatch => {
+    return {
+        actGetOrdersUser: () => dispatch({ type: GET_ORDER_USER })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileSection)
