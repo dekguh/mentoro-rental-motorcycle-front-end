@@ -7,6 +7,10 @@ import Api from '../components/utils/Api';
 
 export default function Home({ dataResult }) {
   return (
+  <>
+    <Head>
+        <title>Mentoro - Home</title>
+    </Head>
     <div className='home__wrapper'>
       <div className='home__search-wrap'>
         <HomeHead />
@@ -18,6 +22,7 @@ export default function Home({ dataResult }) {
         <ListMotorSection dataResult={dataResult} classes='margin-bottom-40' />
       </div>
     </div>
+  </>
   )
 }
 

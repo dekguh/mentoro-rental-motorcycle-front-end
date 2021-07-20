@@ -1,9 +1,14 @@
 import DetailHead from '../../components/organisms/detail/DetailHead';
 import DetailContent from '../../components/organisms/detail/DetailContent';
 import Api from '../../components/utils/Api';
+import Head from 'next/head';
 
 const DetailTitlePage = ({ dataResult }) => {
     return (
+    <>
+        <Head>
+            <title>Mentoro - Detail</title>
+        </Head>
         <div className='detail__wrapper margin-bottom-40'>
             <DetailHead />
             <div className='detail__content-wrap'>
@@ -20,6 +25,7 @@ const DetailTitlePage = ({ dataResult }) => {
                 />
             </div>
         </div>
+    </>
     )
 }
 
