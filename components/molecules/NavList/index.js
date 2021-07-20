@@ -8,7 +8,7 @@ export default function NavList() {
                 <House />
             </NavItem>
 
-            <NavItem title='about' slug='#'>
+            <NavItem title='about' slug='/about'>
                 <Bookshelf />
             </NavItem>
 
