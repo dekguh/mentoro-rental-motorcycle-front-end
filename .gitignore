@@ -35,4 +35,4 @@ yarn-error.log*
 
 .env*.local
 
-./__tests__
+/__tests__
