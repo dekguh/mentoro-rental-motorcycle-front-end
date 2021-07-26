@@ -1,5 +1,6 @@
 import DetailHead from '../../components/organisms/detail/DetailHead';
 import DetailContent from '../../components/organisms/detail/DetailContent';
+import Head from 'next/head'
 
 const DetailPage = () => {
     return (
